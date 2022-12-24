@@ -8,7 +8,7 @@ const Home = () => {
     <Container>
       <div className="content">
         <h1>Welcome to Contact Pages</h1>
-        <Button onClick={() => navigate("add")}>Next</Button>
+        <Button onClick={() => navigate("/contacts")}>Next</Button>
       </div>
     </Container>
   );

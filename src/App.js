@@ -1,16 +1,38 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import AddContact from "./components/AddContact";
-import DisplayContacts from "./components/DisplayContacts";
+
 
 const App = () => {
+  const Home = lazy(() => import("./components/Home"));
+  const AddContact = lazy(() => import("./components/AddContact"));
+  const DisplayContacts = lazy(() => import("./components/DisplayContacts"));
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/add" element={<AddContact />} />
-        <Route path="/add/contacts" element={<DisplayContacts />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <DisplayContacts />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contacts/add"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <AddContact />
+            </Suspense>
+          }
+        />
       </Routes>
     </>
   );

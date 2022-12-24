@@ -34,41 +34,47 @@ const AddContact = () => {
     }
 
     try {
-      navigate("contacts");
+      navigate(-1);
+      setTimeout(() => {
+        window.location.reload();
+      }, 400);
       await axios.post("/api/contact/create", contacts);
     } catch (error) {
       console.log(error.message)
     }
   };
+  
   return (
-    <Container>
-      <h1>Add Contact</h1>
-      <Form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="firstName..."
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="lastName..."
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="email..."
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="file"
-          onChange={(e) => setFileName(e.target.files[0])}
-        />
-        <Button type="submit">Submit</Button>
-      </Form>
-    </Container>
+    <>
+      <Container>
+        <h1>Add Contact</h1>
+        <Form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="firstName..."
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="lastName..."
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="email..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input type="file" onChange={(e) => setFileName(e.target.files[0])} />
+          <Button type="submit">Submit</Button>
+        </Form>
+      </Container>
+      <Back>
+        <button onClick={() => navigate(-1)}>Back</button>
+      </Back>
+    </>
   );
 };
 
@@ -76,7 +82,7 @@ export default AddContact;
 
 const Container = styled.div`
   width: 30rem;
-  margin: 4rem auto;
+  margin: 4rem auto 1rem auto;
   box-shadow: 0px 0px 0px 0.6px inset #ffffff;
   padding: 1.5rem;
   border-radius: 5px;
@@ -99,6 +105,7 @@ const Form = styled.form`
     outline: none;
   }
 `;
+
 const Button = styled.button`
   padding: 0.6rem;
   margin-top: 1rem;
@@ -112,3 +119,21 @@ const Button = styled.button`
     opacity: 0.6;
   }
 `;
+
+const Back = styled.div`
+  text-align: center;
+
+  button {
+    padding: 0.5rem 2rem;
+    background-color: #1010a7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+`;
+
