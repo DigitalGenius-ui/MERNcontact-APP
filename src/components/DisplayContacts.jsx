@@ -11,7 +11,9 @@ const DisplayContacts = () => {
   useEffect(() => {
     const displayContacts = async () => {
       try {
-        const fetchData = await axios.get("/api/contact/add");
+        const fetchData = await axios.get(
+          "https://contactapp-api-production.up.railway.app/api/contact/add"
+        );
         setData(fetchData.data);
       } catch (error) {
         console.log(error);
@@ -22,7 +24,9 @@ const DisplayContacts = () => {
 
   const removeAll = async() => {
     try {
-      await axios.delete("/api/contact/remove");
+      await axios.delete(
+        "https://contactapp-api-production.up.railway.app/api/contact/remove"
+      );
     } catch (error) {
       console.log(error)
     }

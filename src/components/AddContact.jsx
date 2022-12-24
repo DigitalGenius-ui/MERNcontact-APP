@@ -27,7 +27,10 @@ const AddContact = () => {
       contacts.photo = imageName;
 
       try {
-        await axios.post("/api/upload", formData);
+        await axios.post(
+          "https://contactapp-api-production.up.railway.app/api/upload",
+          formData
+        );
       } catch (error) {
         console.log(error)
       }
@@ -38,7 +41,10 @@ const AddContact = () => {
       setTimeout(() => {
         window.location.reload();
       }, 400);
-      await axios.post("/api/contact/create", contacts);
+      await axios.post(
+        "https://contactapp-api-production.up.railway.app/api/contact/create",
+        contacts
+      );
     } catch (error) {
       console.log(error.message)
     }

@@ -21,7 +21,10 @@ const SingleContact = (props) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("/api/contact/delete/" + id);
+      await axios.delete(
+        "https://contactapp-api-production.up.railway.app/api/contact/delete/" +
+          id
+      );
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +44,7 @@ const SingleContact = (props) => {
     setShowUpdate(false);
     try {
       await axios.put(
-        `/api/contact/update/${updatedContact._id}`,
+        `https://contactapp-api-production.up.railway.app/api/contact/update/${updatedContact._id}`,
         updatedContact
       );
     } catch (error) {
